@@ -14,19 +14,30 @@ $(document).ready(function(){
     function timeBlock() {
         
         for (var i = 0; i < hourArray.length; i++) {
-            var hour = document.createElement("p");
+            var hourBlock = document.createElement("div");
+            $(hourBlock).attr("class","row");
+            $(".container").append(hourBlock);
+
+            var hour = document.createElement("div");
             $(hour).text(hourArray[i]);
-            console.log(hour);
-            $(hour).attr("class","hour");
-            $(".container").append(hour);
+            $(hour).attr("class","hour col-1");
+            $(hourBlock).append(hour);
 
-        //    <div class="row">
-        //    <div class="col-8">
-        //    <div class="col-4">
-            
+            var description = document.createElement("div");
+            $(description).text("");
+            $(description).attr("class","description col-10");
+            $(hourBlock).append(description);
+
+            var saveBtn = document.createElement("div");
+            $(saveBtn).text("Save");
+            $(saveBtn).attr("class","saveBtn col-1");
+            $(hourBlock).append(saveBtn);        
         };
+//    $(saveBtn).mouseenter() {
+        "class","saveBtn i:hover"
+//        };
+//    $(saveBtn).click("class","saveBtn click");    
         
-
     }
 
     timeBlock();

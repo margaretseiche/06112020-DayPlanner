@@ -31,24 +31,28 @@ textarea{
 
 .description{
   white-space: pre-wrap;
+  background-color: #DCDCDC;
 }
 
-.time-block{
+/*.time-block{
   text-align: center;
   border-radius: 15px;
   background-color: gray;
-}
+}*/
 
 .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
   background-color: gray;
 }
 
 .hour {
   background-color: gray;
-  color: #000000;
+  color: white;
+  font-weight: bold;
   border-top: 1px dashed #000000;
 }
 
@@ -78,4 +82,9 @@ textarea{
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+.saveBtn click {
+  font-size: 20px;
+  background-color: green;
 }
