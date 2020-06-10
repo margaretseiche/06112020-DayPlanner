@@ -1,5 +1,7 @@
 # 06112020-DayPlanner
 
+Deployed at https://margaretseiche.github.io/06112020-DayPlanner/
+
 I started by pseudocoding.
 
 - In HTML, create a placeholder for 'currentTime' 
