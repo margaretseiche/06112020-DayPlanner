@@ -5,23 +5,24 @@ $(document).ready(function() {
 
     currentDay.text(moment().format('dddd, MMMM Do YYYY'));
     currentTime.text(moment().format('h:mm a'));
-    currentHour = moment().format('h a');
 
     var hourArray = ["8:00 am","9:00 am","10:00 am","11:00 am","12:00 pm","1:00 pm","2:00 pm","3:00 pm","4:00 pm","5:00 pm","6:00 pm","7:00 pm"]; 
-
-    var todos = ["","","","","","","","","","",""];
+    var hourArray2 = [12,13,14,15,16,17,18,19,20,21,22,23]; 
+    var hourArray3 = [8,9,10,11,12,13,14,15,16,17,18,19]; 
+    
+    var todos = ["","","","","test","","","","","",""];
 
     var hourBlock;
     var hour; 
     var description;
+    var textarea;
     var saveBtn;
 
-    function renderTodos() {
-        
+    function renderTodos() {        
         for (var i = 0; i < hourArray.length; i++) {
             hourBlock = $("<div>");
                 $(hourBlock).attr("class","row");
-                $(".container").append(hourBlock);
+                $(container).append(hourBlock);
 
             hour = $("<div>");
                 $(hour).text(hourArray[i]);
@@ -31,6 +32,7 @@ $(document).ready(function() {
             description = $("<div>");
                 $(description).text("");
                 $(description).attr("class","description col-8");
+                $(description).attr("id","description");
                 $(hourBlock).append(description);
 
             textarea = $("<textarea>");
@@ -46,7 +48,7 @@ $(document).ready(function() {
 
             saveImage = $("<img>");
                 $(saveImage).attr("src","./saveicon.png");
-                $(saveImage).css({height:"50px",width:"50px", paddingLeft:"15px"});
+                $(saveImage).css({height:"50px",width:"60px", paddingLeft:"15px"});
                 $(saveBtn).append(saveImage);   
             
             $(".saveBtn").on("click", function() {
@@ -57,38 +59,53 @@ $(document).ready(function() {
                 $(bellImage).css({height:"50px",width:"50px", paddingLeft:"15px"});
                 $(hour).append(bellImage);   
             });   
-
         };        
     }
 
     function checkTime () {
-        for (var i = 0; i < hourArray.length; i++) {
- 
-/*            if (moment().isBefore(hour[i])) {
-                $(description).attr("class","future");
-            } else if (moment().isBefore(hour[i])) {
-                $(description).attr("class","past");
-            } else $(description).attr("class","present");  */
+        for (var j = 0; j < hourArray2.length; j++) {
+           
+            var currentHour = Number(moment().startOf('day').fromNow().slice(0,2).trim());
 
-            if (currentHour < hour[i]) {
-            $(description).attr("class","future");
-        } else if (currentHour == hour[i]) {
-            $(description).attr("class","present");
-        } else $(description).attr("class","past");  
-    }  
-}
+        /*    console.log(currentHour);        */
+            console.log(hourArray2[j]);
 
-    //Function to reload to continuously update color coding.
-    function reload(){
-        setTimeout(function() {
-            location.reload();
-        }, 60000);
-    };
+    /*        if (currentHour < hourArray2[j]) { 
+                console.log("future");               
+                 $("#description").attr("id","future description");
+             } else if (currentHour == hourArray2[j]) {
+                 console.log("present");
+                 $("#description").attr("id","present description");
+             } else if (currentHour > hourArray2[j]) {
+                 $("#description").attr("id","past description");  
+                 console.log("past");                   */
+                 
+                 if (currentHour < hourArray2[j]) { 
+                    console.log("future");               
+                     $(".description").css({
+                        backgroundColor: "#77dd77",
+                        color: "white"
+                          });
+                 } else if (currentHour == hourArray2[j]) {
+                     console.log("present");
+                     $(".description").css({
+                        backgroundColor: "#ff6961",
+                        color: "white"
+                     });
+                 } else if (currentHour > hourArray2[j]) {
+                    console.log("past");    
+                    $(".description").css({
+                        backgroundColor: "#d3d3d3",
+                        color: "white"
+                });
+            }   
+        }
+    }
 
     function storeTodos() {
         // Stringify and set "todos" key in localStorage to todos array
         localStorage.setItem("todos", JSON.stringify(todos));
-      }
+    }
 
     function init() {
         // Get stored todos from localStorage
@@ -106,7 +123,5 @@ $(document).ready(function() {
 
     init();
     checkTime();
-    reload();
     storeTodos();
-    console.log(todos);
 });
