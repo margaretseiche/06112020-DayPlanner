@@ -41,9 +41,9 @@ $(document).ready(function() {
                 .attr("type","text")
                 .attr("id","textarea-" + i)
                 .appendTo(description);
-                textarea.on("change",myFunction({
+            /*    textarea.on("change",myFunction({
                     
-                }));
+                }));     */
 
             saveBtn = $("<button>")
                 .text("Save")  
