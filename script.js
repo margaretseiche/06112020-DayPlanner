@@ -2,6 +2,7 @@ $(document).ready(function() {
     var container = $(".container");
     var currentDay = $("#currentDay");
     var currentTime = $("#currentTime");
+    var todoForm = $("#todo-form");
 
     currentDay.text(moment().format('dddd, MMMM Do YYYY'));
     currentTime.text(moment().format('h:mm a'));
@@ -21,7 +22,7 @@ $(document).ready(function() {
         for (var i = 0; i < hourArray.length; i++) {
             hourBlock = $("<div>")
                 .attr("class","row")
-                .appendTo(container);
+                .appendTo(container);   //todoForm --- trying to see if using a form will allow textarea to save
 
             hour = $("<div>")
                 .text(hourArray[i])
@@ -34,11 +35,15 @@ $(document).ready(function() {
                 .attr("id","description-" + i)
                 .appendTo(hourBlock);
 
-            textarea = $("<textarea>")
+            textarea = $("<textarea>")   
                 .text(todos[i])
                 .attr("class","textarea col-12")
                 .attr("type","text")
+                .attr("id","textarea-" + i)
                 .appendTo(description);
+                textarea.on("change",myFunction({
+                    
+                }));
 
             saveBtn = $("<button>")
                 .text("Save")  
@@ -51,12 +56,13 @@ $(document).ready(function() {
                 .appendTo(saveBtn);   
             
             $(".saveBtn").on("click", function() {
-                todos.splice(i, 1, textarea[i]);
+                todos.splice(i, 1, $("#textarea-"+i));
+                console.log($("#textarea-"+i),i);
 
-                bellImage = $("<img>")
+            /*    bellImage = $("<img>")
                 .attr("src","./bell.jpg")
                 .css({height:"50px",width:"50px", paddingLeft:"15px"})
-                .appendTo(hour);   
+                .appendTo(hour[i]);   */               //NOT WORKING AS INTENDED -- On clicking 'saveBtn' puts bells all in last row 
             });   
         };        
     }
